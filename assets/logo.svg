@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1200 400"
+     preserveAspectRatio="xMidYMid meet">
+  <style>
+    /* keep it crisp and centered */
+    svg, image {
+      width: 100%;
+      height: auto;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  </style>
+
+  <!-- your actual uploaded image file -->
+  <image href="careerloop-logo.jpg" width="1200" height="400" />
+</svg>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Screening — CareerloopAI</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/config.js"></script>
+<script defer src="assets/app.js"></script>
+<script defer src="assets/chat-assistant.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<div id="tsparticles"></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" width="32" height="32"/><span>CareerloopAI</span></a>
+    <nav>
+      <a href="builder.html">Resume Builder</a>
+      <a href="screening.html">AI Screening</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="btn btn-ghost small">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>AI Resume Screening</h1>
+  <p class="muted">Upload multiple resumes and a job description. Choose industry profile to tune scoring.</p>
+
+  <div class="card form">
+    <label>Industry Profile
+      <select id="industryProfile">
+        <option value="software">Software</option>
+        <option value="finance">Finance</option>
+        <option value="marketing">Marketing</option>
+        <option value="healthcare">Healthcare</option>
+        <option value="general">General</option>
+      </select>
+    </label>
+    <label>Job Description <textarea id="jobDesc" rows="6" placeholder="Paste JD here"></textarea></label>
+    <label>Upload Resumes (PDF/DOCX) <input id="resumeFiles" type="file" multiple /></label>
+    <div class="row">
+      <button class="btn" onclick="sampleResumes()">Use Sample Resumes</button>
+      <button class="btn btn-primary" onclick="screenResumes()">Run Screening</button>
+    </div>
+    <div id="progress" class="progress hidden"><div class="bar"></div></div>
+  </div>
+
+  <div class="card">
+    <h3>Results</h3>
+    <div id="results" class="table-wrap"></div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container"><p class="tiny">© <span id="year"></span> CareerloopAI</p></div></footer>
+
+<!-- Floating AI assistant -->
+<div id="clai-assistant" class="clai-assistant">
+  <button id="clai-toggle" class="clai-button">Ask AI</button>
+  <div id="clai-panel" class="clai-panel hidden">
+    <div class="clai-header">CareerloopAI Assistant</div>
+    <div id="clai-messages" class="clai-messages"></div>
+    <form id="clai-form" class="clai-form">
+      <input id="clai-input" placeholder="Ask AI about screening or hiring" />
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+    <div class="clai-note tiny">AI may make mistakes — verify info.</div>
+  </div>
+</div>
+</body>
+</html>

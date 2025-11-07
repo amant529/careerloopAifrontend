@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard — CareerloopAI</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/config.js"></script>
+<script defer src="assets/app.js"></script>
+<script defer src="assets/chat-assistant.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div id="tsparticles"></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" width="32" height="32"/><span>CareerloopAI</span></a>
+    <nav>
+      <a href="builder.html">Resume Builder</a>
+      <a href="screening.html">AI Screening</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="btn btn-ghost small">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Dashboard</h1>
+  <p class="muted">KPIs connect to your backend <code>/api/stats</code> (configured in <code>assets/config.js</code>).</p>
+  <div class="grid-3">
+    <div class="card stat"><h3 id="kpiUsers">0</h3><p>Total Users</p></div>
+    <div class="card stat"><h3 id="kpiResumes">0</h3><p>Resumes Generated</p></div>
+    <div class="card stat"><h3 id="kpiScreens">0</h3><p>Screening Runs</p></div>
+  </div>
+  <div class="card"><canvas id="kpiChart" height="120"></canvas></div>
+
+  <div class="card">
+    <h3>Company Resume Manager</h3>
+    <p class="muted">Upload and manage candidate resumes (frontend only; wire to backend later).</p>
+    <div class="row">
+      <input id="mgrFiles" type="file" multiple />
+      <button class="btn" onclick="managerAdd()">Add to Table</button>
+      <button class="btn btn-ghost" onclick="managerClear()">Clear</button>
+    </div>
+    <div id="mgrTable" class="table-wrap"></div>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="container"><p class="tiny">© <span id="year"></span> CareerloopAI</p></div></footer>
+
+<!-- Floating AI assistant -->
+<div id="clai-assistant" class="clai-assistant">
+  <button id="clai-toggle" class="clai-button">Ask AI</button>
+  <div id="clai-panel" class="clai-panel hidden">
+    <div class="clai-header">CareerloopAI Assistant</div>
+    <div id="clai-messages" class="clai-messages"></div>
+    <form id="clai-form" class="clai-form">
+      <input id="clai-input" placeholder="Ask AI about metrics, funnels, or growth ideas" />
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+    <div class="clai-note tiny">AI may make mistakes — verify info.</div>
+  </div>
+</div>
+</body>
+</html>

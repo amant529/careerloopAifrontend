@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Profile — CareerloopAI</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/config.js"></script>
+<script defer src="assets/app.js"></script>
+<script defer src="assets/chat-assistant.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<div id="tsparticles"></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" width="32" height="32"/><span>CareerloopAI</span></a>
+    <nav>
+      <a href="builder.html">Resume Builder</a>
+      <a href="screening.html">AI Screening</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="btn btn-ghost small">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Profile Settings</h1>
+  <p class="muted">Stored locally in your browser for this MVP.</p>
+  <form class="card form" onsubmit="saveProfile(event)">
+    <label>Name <input name="name" id="pfName" required></label>
+    <label>Role <input name="role" id="pfRole"></label>
+    <label>Email <input type="email" name="email" id="pfEmail" required></label>
+    <div class="row"><button class="btn btn-primary">Save</button></div>
+  </form>
+</main>
+
+<footer class="site-footer"><div class="container"><p class="tiny">© <span id="year"></span> CareerloopAI</p></div></footer>
+
+<!-- Floating AI assistant (same widget) -->
+<div id="clai-assistant" class="clai-assistant">
+  <button id="clai-toggle" class="clai-button">Ask AI</button>
+  <div id="clai-panel" class="clai-panel hidden">
+    <div class="clai-header">CareerloopAI Assistant</div>
+    <div id="clai-messages" class="clai-messages"></div>
+    <form id="clai-form" class="clai-form">
+      <input id="clai-input" placeholder="Ask AI anything…" />
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+    <div class="clai-note tiny">AI may make mistakes — verify info.</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Resume Builder — CareerloopAI</title>
+<link rel="stylesheet" href="assets/styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="assets/config.js"></script>
+<script defer src="assets/app.js"></script>
+<script defer src="assets/chat-assistant.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<div id="tsparticles"></div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" width="32" height="32" alt="logo"/><span>CareerloopAI</span></a>
+    <nav>
+      <a href="builder.html">Resume Builder</a>
+      <a href="screening.html">AI Screening</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="profile.html">Profile</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="themeToggle" class="btn btn-ghost small">Theme</button>
+    </div>
+  </div>
+</header>
+
+<main class="container page">
+  <h1>Resume Builder</h1>
+  <p class="muted">Connect your backend in <code>assets/config.js</code>. Drafts auto-save locally.</p>
+
+  <div class="card template-picker">
+    <label>Template:
+      <select id="templateSelect">
+        <option value="modern">Modern</option>
+        <option value="minimal">Minimal</option>
+        <option value="ats">ATS-Optimized</option>
+      </select>
+    </label>
+    <label>Industry:
+      <select id="industrySelect" onchange="applyTheme(this.value)">
+        <option value="general">General</option>
+        <option value="software">Software</option>
+        <option value="finance">Finance</option>
+        <option value="marketing">Marketing</option>
+        <option value="healthcare">Healthcare</option>
+      </select>
+    </label>
+    <div class="row">
+      <button class="btn" onclick="loadDraft()">Load Draft</button>
+      <button class="btn" onclick="saveDraft()">Save Draft</button>
+      <button class="btn btn-ghost" onclick="importJSON()">Import JSON</button>
+      <button class="btn btn-ghost" onclick="exportJSON()">Export JSON</button>
+    </div>
+  </div>
+
+  <div class="layout-cols">
+    <form id="builderForm" class="card form">
+      <h3>Your Details</h3>
+      <label>Full Name <input name="name" required /></label>
+      <label>Email <input type="email" name="email" required /></label>
+      <label>Phone <input name="phone" /></label>
+      <label>Title / Role <input name="title" placeholder="e.g., Frontend Engineer"/></label>
+      <label>Summary <textarea name="summary" rows="4" placeholder="Short professional summary"></textarea></label>
+      <label>Skills (comma separated) <input name="skills" placeholder="React, JS, CSS"/></label>
+      <label>Experience <textarea name="experience" rows="6" placeholder="- Company — Role — Achievements"></textarea></label>
+      <label>Education <textarea name="education" rows="4" placeholder="- Degree — School — Year"></textarea></label>
+
+      <div class="row">
+        <button type="button" class="btn" onclick="generateResume()">Generate with AI</button>
+        <button type="button" class="btn" onclick="scoreKeywords()">Score Keywords</button>
+        <button type="button" class="btn btn-primary" onclick="downloadPDF()">Download PDF</button>
+        <button type="button" class="btn" onclick="downloadDOC()">Download DOC</button>
+      </div>
+      <div id="progress" class="progress hidden"><div class="bar"></div></div>
+    </form>
+
+    <div class="card preview">
+      <div class="preview-toolbar">
+        <button class="btn btn-ghost" onclick="copyKeywords()">Copy Target Keywords</button>
+        <button class="btn btn-ghost" onclick="openTips()">Industry Tips</button>
+      </div>
+      <iframe id="resumePreview" title="Resume Preview"></iframe>
+    </div>
+  </div>
+
+  <dialog id="tipsDialog" class="card tips-dialog">
+    <h3>Industry Tips</h3>
+    <ul id="tipsList"></ul>
+    <div class="row"><button class="btn btn-primary" onclick="closeTips()">Close</button></div>
+  </dialog>
+</main>
+
+<footer class="site-footer"><div class="container"><p class="tiny">© <span id="year"></span> CareerloopAI</p></div></footer>
+
+<!-- Floating AI assistant -->
+<div id="clai-assistant" class="clai-assistant">
+  <button id="clai-toggle" class="clai-button">Ask AI</button>
+  <div id="clai-panel" class="clai-panel hidden">
+    <div class="clai-header">CareerloopAI Assistant</div>
+    <div id="clai-messages" class="clai-messages"></div>
+    <form id="clai-form" class="clai-form">
+      <input id="clai-input" placeholder="Ask AI about bullet points, impact, etc." />
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+    <div class="clai-note tiny">AI may make mistakes — verify info.</div>
+  </div>
+</div>
+</body>
+</html>
