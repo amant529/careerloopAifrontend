@@ -1,101 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CareerloopAI — AI Resume Builder & Screening</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css" />
-<script src="assets/config.js"></script>
-<script defer src="assets/app.js"></script>
-<script defer src="assets/chat-assistant.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CareerloopAI — AI Resume Builder & Screening</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/styles.css">
+
+  <!-- JS -->
+  <script src="assets/config.js" defer></script>
+  <script src="assets/app.js" defer></script>
+  <script src="assets/chat-assistant.js" defer></script>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 </head>
+
 <body>
-<div id="tsparticles"></div>
+  <div id="tsparticles"></div>
 
-<!-- Splash ≥5s -->
-<div id="splash" class="splash">
-  <img src="assets/logo.svg" alt="logo" class="CareerloopAI" />
-  <h1>CareerloopAI</h1>
-  <p>AI resumes & screening — tuned for your industry.</p>
-</div>
-
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="index.html"><img src="assets/logo.svg" width="32" height="32" alt="logo"/><span>CareerloopAI</span></a>
-    <nav>
-      <a href="builder.html">Resume Builder</a>
-      <a href="screening.html">AI Screening</a>
-      <a href="dashboard.html">Dashboard</a>
-      <a href="profile.html">Profile</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button id="themeToggle" class="btn btn-ghost small">Theme</button>
-    </div>
+  <!-- Splash -->
+  <div id="splash" class="splash">
+    <img src="assets/logo.svg" alt="CareerloopAI Logo" class="logo" />
+    <h1>CareerloopAI</h1>
+    <p>AI resumes & screening — tuned for your industry.</p>
   </div>
-</header>
 
-<main class="container hero">
-  <section class="hero-copy">
-    <h1>Build a job-winning resume. Screen smarter.</h1>
-    <p>Create ATS-friendly resumes and evaluate candidates by industry criteria — pure HTML/CSS/JS.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="builder.html">Start Building</a>
-      <a class="btn btn-ghost" href="screening.html">Try Screening</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" width="32" height="32" alt="logo"/>
+        <span>CareerloopAI</span>
+      </a>
+      <nav>
+        <a href="builder.html">Resume Builder</a>
+        <a href="screening.html">AI Screening</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn small">Theme</button>
+      </div>
     </div>
-    <ul class="features">
-      <li>Industry templates & live preview</li>
-      <li>Keyword targeting & scoring</li>
-      <li>Bulk screening & evidence-based results</li>
-      <li>Export PDF / DOC & JSON</li>
-    </ul>
+  </header>
+
+  <main class="container hero">
+    <section class="hero-copy">
+      <h1>Build a job-winning resume. Screen smarter.</h1>
+      <p>Create ATS-friendly resumes and evaluate candidates by industry criteria — pure HTML/CSS/JS.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="builder.html">Start Building</a>
+        <a class="btn btn-outline" href="screening.html">Try Screening</a>
+      </div>
+      <ul class="features">
+        <li>Industry templates & live preview</li>
+        <li>Keyword targeting & scoring</li>
+        <li>Bulk screening & evidence-based results</li>
+        <li>Export PDF / DOC / JSON</li>
+      </ul>
+    </section>
+
+    <section class="hero-card">
+      <div class="card demo-card">
+        <h3>Live Preview</h3>
+        <p>Type, generate, and print instantly.</p>
+        <!-- ✅ Fixed image: always loads -->
+        <img src="https://via.placeholder.com/400x250.png?text=Resume+Preview" alt="Preview" />
+      </div>
+    </section>
+  </main>
+
+  <section class="container grid-3">
+    <div class="card"><h3>Job Seekers</h3><p>Tailor resumes per job.</p></div>
+    <div class="card"><h3>Recruiters</h3><p>Score & shortlist faster.</p></div>
+    <div class="card"><h3>Teams</h3><p>Standardize rubrics & collaborate.</p></div>
   </section>
-  <section class="hero-card">
-    <div class="card demo-card">
-      <h3>Live Preview</h3>
-      <p>Type, generate, and print instantly.</p>
-      <img src="https://via.placeholder.com/400x250.png?text=Resume+Preview" alt="Preview" />
+
+  <section class="container card testimonials">
+    <h3>What users say</h3>
+    <div class="testi-grid">
+      <blockquote>“Got interviews in 48 hours.”<footer>— Aditi</footer></blockquote>
+      <blockquote>“Bulk screening saved our week.”<footer>— Rahul</footer></blockquote>
+      <blockquote>“No setup. Just works.”<footer>— Nisha</footer></blockquote>
     </div>
   </section>
-</main>
 
-<section class="container grid-3">
-  <div class="card"><h3>Job Seekers</h3><p>Tailor resumes per job.</p></div>
-  <div class="card"><h3>Recruiters</h3><p>Score & shortlist faster.</p></div>
-  <div class="card"><h3>Teams</h3><p>Standardize rubrics & collaborate.</p></div>
-</section>
+  <footer class="site-footer">
+    <div class="container">
+      <p class="tiny">© <span id="year"></span> CareerloopAI</p>
+    </div>
+  </footer>
 
-<section class="container card testimonials">
-  <h3>What users say</h3>
-  <div class="testi-grid">
-    <blockquote>“Got interviews in 48 hours.”<footer>— Aditi</footer></blockquote>
-    <blockquote>“Bulk screening saved our week.”<footer>— Rahul</footer></blockquote>
-    <blockquote>“No setup. Just works.”<footer>— Nisha</footer></blockquote>
+  <!-- Floating AI Assistant -->
+  <div id="clai-assistant" class="clai-assistant">
+    <button id="clai-toggle" class="clai-button">Ask AI</button>
+    <div id="clai-panel" class="clai-panel hidden">
+      <div class="clai-header">CareerloopAI Assistant</div>
+      <div id="clai-messages" class="clai-messages"></div>
+      <form id="clai-form" class="clai-form">
+        <input id="clai-input" placeholder="Ask about resumes, screening, or issues…" />
+        <button class="btn btn-primary" type="submit">Send</button>
+      </form>
+      <div class="clai-note tiny">AI may make mistakes — verify important info.</div>
+    </div>
   </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container"><p class="tiny">© <span id="year"></span> CareerloopAI</p></div>
-</footer>
-
-<!-- Floating AI assistant -->
-<div id="clai-assistant" class="clai-assistant">
-  <button id="clai-toggle" class="clai-button">Ask AI</button>
-  <div id="clai-panel" class="clai-panel hidden">
-    <div class="clai-header">CareerloopAI Assistant</div>
-    <div id="clai-messages" class="clai-messages"></div>
-    <form id="clai-form" class="clai-form">
-      <input id="clai-input" placeholder="Ask about resumes, screening, or issues…" />
-      <button class="btn btn-primary" type="submit">Send</button>
-    </form>
-    <div class="clai-note tiny">AI may make mistakes — verify important info.</div>
-  </div>
-</div>
 </body>
 </html>
