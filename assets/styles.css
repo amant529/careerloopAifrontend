@@ -1,20 +1,20 @@
 :root {
   --primary:#6c5ce7;
-  --accent:#ff9ff3;
-  --bg:#f8f9ff;
-  --muted:#7e7e7e;
+  --accent:#b26efb;
+  --bg-gradient: linear-gradient(135deg, #f3e9ff, #e3f0ff, #f7ecff);
+  --muted:#5a5a5a;
   --radius:12px;
 }
 
-/* Global */
+/* GLOBAL */
 body {
   margin:0;
-  font-family: "Inter", sans-serif;
-  background: var(--bg);
+  font-family:"Inter", sans-serif;
+  background:var(--bg-gradient);
+  background-attachment:fixed;
   overflow-x:hidden;
 }
 
-/* UI must stay above canvas */
 #app, #login, #mainWrapper, .page, nav {
   position:relative;
   z-index:20;
@@ -22,15 +22,14 @@ body {
 
 .page { display:none; padding:20px; }
 .page-active { display:block !important; }
-
 .hidden { display:none !important; }
 
-/* Login */
+/* LOGIN */
 .auth-box {
-  background:white;
   width:320px;
   margin:100px auto;
   padding:25px;
+  background:white;
   border-radius:var(--radius);
   text-align:center;
   box-shadow:0 2px 10px rgba(0,0,0,0.1);
@@ -41,47 +40,60 @@ body {
   border:1px solid #ccc;
 }
 
-/* Navbar */
+/* NAVBAR */
 .nav {
-  background:white;
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(8px);
   padding:12px 20px;
-  display:flex; justify-content:space-between; align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   border-bottom:1px solid #ddd;
 }
 .nav-links a {
   margin:0 10px;
   text-decoration:none;
-  color:#444;
+  color:#333;
+}
+.nav-links a:hover, .nav-links a.active {
+  color:var(--primary);
+  font-weight:600;
+}
+.nav-user {
+  font-size:13px;
 }
 
-/* Buttons */
+/* BUTTONS */
 .btn {
   padding:10px 18px;
   border:none;
   border-radius:var(--radius);
   cursor:pointer;
+  font-size:14px;
 }
 .btn.primary { background:var(--primary); color:white; }
-.btn.outline { border:1px solid var(--primary); background:none; color:var(--primary); }
-.btn.ghost { border:1px solid #aaa; background:none; }
+.btn.outline { background:none; border:1px solid var(--primary); color:var(--primary); }
+.btn.ghost { background:none; border:1px solid #aaa; }
 
-/* Inputs */
+/* FORMS */
 input, textarea {
-  width:100%; padding:10px; margin-bottom:10px;
+  width:100%;
+  padding:10px;
   border-radius:var(--radius);
   border:1px solid #ccc;
+  margin-bottom:10px;
 }
 
-/* Preview */
+/* PREVIEW + RESULTS */
 .preview-box, .result-box {
   background:white;
-  padding:18px;
-  border-radius:var(--radius);
   border-left:4px solid var(--primary);
+  padding:15px;
+  border-radius:var(--radius);
   white-space:pre-wrap;
 }
 
-/* Pricing */
+/* PRICING */
 .price-box {
   background:white;
   max-width:300px;
@@ -90,19 +102,39 @@ input, textarea {
   border:1px solid #ddd;
 }
 .old { text-decoration:line-through; color:red; }
-.new { font-weight:700; font-size:20px; color:var(--primary); }
+.new { color:var(--primary); font-weight:700; font-size:20px; }
 
-/* Canvas waves */
+/* CANVAS BACKGROUND */
 #bgWaveCanvas {
-  position:fixed; top:0; left:0;
-  width:100%; height:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
   z-index:1;
 }
 
-/* Toast */
+/* Soft overlay to darken waves slightly */
+#bgOverlay {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(255,255,255,0.2);
+  backdrop-filter:blur(2px);
+  z-index:2;
+}
+
+/* TOAST */
 #toast {
-  position:fixed;top:20px;right:20px;
-  background:var(--primary);color:white;
-  padding:10px 14px;border-radius:var(--radius);
-  display:none;z-index:999;
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:var(--primary);
+  color:white;
+  padding:12px 15px;
+  border-radius:var(--radius);
+  display:none;
+  z-index:999;
 }
