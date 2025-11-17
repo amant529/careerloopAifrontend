@@ -5,28 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Careerloop AI | ATS Resume Builder & AI Screening</title>
+  <title>Careerloop AI | ATS Resume Builder & Screening</title>
 
-  <meta name="description" content="Careerloop AI helps job seekers create ATS-friendly professional resumes and enables HR teams to bulk screen resumes using AI. Free for early users.">
-  <meta name="keywords" content="ATS resume, AI resume builder, resume screening, CV analyzer, bulk resume screening, job search India, HR tech">
-
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://careerloopai.com/" />
-
-  <!-- Social OG -->
-  <meta property="og:title" content="Careerloop AI | Resume Builder & AI Screening">
-  <meta property="og:description" content="Generate ATS resumes and screen profiles with AI. Free launch access.">
-  <meta property="og:image" content="assets/og-image.png">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Create ATS-ready professional resumes using AI and screen candidates instantly. Free for early launch users.">
+  <meta name="keywords" content="Resume Builder, ATS Resume, AI Resume, Resume Screening, Bulk Screening, HR Tech, Jobs India">
 
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body>
 
-<!-- Background Animation -->
 <canvas id="bgWaveCanvas"></canvas>
 <div id="bgOverlay"></div>
 
@@ -37,28 +25,40 @@
   <!-- LOGIN -->
   <section id="login" class="page page-active">
     <div class="auth-box">
-      <h2>Welcome to Careerloop AI</h2>
-      <p class="muted">Enter your email to continue</p>
-      <input type="email" id="loginEmail" placeholder="you@example.com" />
-      <button class="btn primary" id="loginBtn">Continue</button>
-      <p class="legal-small">By continuing, you agree to our Terms & Privacy Policy.</p>
+      <h2>Careerloop AI</h2>
+
+      <div id="quickLogin">
+        <p class="muted">Quick login</p>
+        <input type="email" id="loginEmail" placeholder="you@example.com" />
+        <button class="btn primary" id="quickLoginBtn">Continue</button>
+        <p><a href="#" id="switchSecure">Use secure OTP login</a></p>
+      </div>
+
+      <div id="secureLogin" class="hidden">
+        <p class="muted">Secure login via OTP</p>
+        <input type="email" id="secureEmail" placeholder="you@example.com" />
+        <button class="btn outline" id="sendOtpBtn">Send OTP</button>
+        <input type="text" id="otpInput" placeholder="Enter OTP" class="hidden" />
+        <button class="btn primary hidden" id="verifyOtpBtn">Verify & Login</button>
+        <p><a href="#" id="switchQuick">Use quick login</a></p>
+      </div>
+
+      <p class="legal-small">By continuing, you accept Terms and Privacy Policy.</p>
     </div>
   </section>
 
-  <!-- APP -->
+
+  <!-- MAIN APP -->
   <div id="mainWrapper" class="hidden">
 
-    <!-- NAVBAR -->
     <nav class="nav">
       <div class="nav-brand" onclick="location.hash='#home'">Careerloop</div>
-
       <div class="nav-links">
         <a href="#home" data-route>Home</a>
         <a href="#builder" data-route>Resume Builder</a>
         <a href="#screen" data-route>AI Screening</a>
         <a href="#pricing" data-route>Subscription</a>
       </div>
-
       <div class="nav-user">
         <span id="userEmailLabel"></span>
         <button class="btn ghost small" id="logoutBtn">Logout</button>
@@ -71,14 +71,13 @@
       <section id="home" class="page">
         <h1 class="hero-title">AI Resume Builder & Screening</h1>
         <p class="hero-sub">Generate ATS resumes & shortlist candidates using AI.</p>
-
         <div class="hero-actions">
-          <a href="#builder" data-route class="btn primary">Build Resume</a>
-          <a href="#screen" data-route class="btn outline">Start Screening</a>
+          <a class="btn primary" href="#builder" data-route>Build Resume</a>
+          <a class="btn outline" href="#screen" data-route>Start Screening</a>
         </div>
       </section>
 
-      <!-- Resume Builder -->
+      <!-- BUILDER -->
       <section id="builder" class="page">
         <h2>AI Resume Builder</h2>
 
@@ -94,7 +93,7 @@
         <label>Extras</label><textarea id="b_extra"></textarea>
 
         <label class="consent-block">
-          <input type="checkbox" id="b_consent"> I allow Careerloop to store & improve my resume.
+          <input type="checkbox" id="b_consent" /> I allow Careerloop to store & improve my resume.
         </label>
 
         <button class="btn primary" id="genResume">Generate AI Resume</button>
@@ -109,7 +108,7 @@
         </div>
       </section>
 
-      <!-- AI SCREENING -->
+      <!-- SCREEN -->
       <section id="screen" class="page">
         <h2>AI Resume Screening</h2>
 
@@ -128,11 +127,11 @@
 
       <!-- PRICING -->
       <section id="pricing" class="page">
-        <h2>Subscription</h2>
+        <h2>Subscription Offer</h2>
         <div class="price-box">
-          <h3>Premium</h3>
-          <p><span class="old">₹299</span> → <span class="new">₹0 FREE</span></p>
-          <button class="btn primary">Claim Now</button>
+          <h3>Careerloop Premium</h3>
+          <p><span class="old">₹299</span> <span class="new">₹0 FREE Launch</span></p>
+          <button class="btn primary" id="claimSubBtn">Claim Now</button>
         </div>
       </section>
 
@@ -140,13 +139,13 @@
   </div>
 </div>
 
-<!-- SAFE JS LOADER -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
 (function(){
-  const js = document.createElement("script");
-  js.src = "assets/app.js?v=" + Date.now();
-  js.onerror = () => alert("ERROR: Could not load assets/app.js. Check folder name!");
-  document.body.appendChild(js);
+  const s = document.createElement("script");
+  s.src = "assets/app.js?v=" + Date.now();
+  document.body.appendChild(s);
 })();
 </script>
 
