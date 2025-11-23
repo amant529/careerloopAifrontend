@@ -4,72 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login – Careerloop AI</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body class="login-page">
 
-    <h1 class="login-title">Select Your Role</h1>
+<h1 class="login-title">Select Your Role</h1>
 
-    <div class="role-box">
-        <button id="jobBtn" class="role-btn" onclick="selectRole('jobseeker')">Job Seeker</button>
-        <button id="bizBtn" class="role-btn" onclick="selectRole('business')">Business / HR</button>
-    </div>
+<div class="role-box">
+    <button id="jobBtn" class="role-btn" onclick="selectRole('jobseeker')">Job Seeker</button>
+    <button id="bizBtn" class="role-btn" onclick="selectRole('business')">Business / HR</button>
+</div>
 
-    <div class="login-box">
-        <input id="email" class="input-field" placeholder="Enter email">
-        <button class="btn-primary" onclick="sendOTP()">Send OTP</button>
-    </div>
+<div class="login-box">
+    <input id="email" class="input-field" placeholder="Enter email">
+    <button class="btn-primary" onclick="sendOTP()">Send OTP</button>
+</div>
 
-    <div class="otp-box">
-        <input id="otp" class="input-field" placeholder="Enter OTP">
-        <button class="btn-primary" onclick="verifyOTP()">Verify & Login</button>
-    </div>
+<div class="otp-box">
+    <input id="otp" class="input-field" placeholder="Enter OTP">
+    <button class="btn-primary" onclick="verifyOTP()">Verify & Login</button>
+</div>
 
 <script>
-// 🔥 YOUR LIVE BACKEND URL
 const BACKEND = "https://careerloopaibackend.onrender.com";
-
 let role = "";
 
 function selectRole(r) {
     role = r;
-
-    // highlight button
     document.getElementById("jobBtn").classList.remove("selected");
     document.getElementById("bizBtn").classList.remove("selected");
 
-    if (r === "jobseeker") {
-        document.getElementById("jobBtn").classList.add("selected");
-    } else {
-        document.getElementById("bizBtn").classList.add("selected");
-    }
+    if (r === "jobseeker") document.getElementById("jobBtn").classList.add("selected");
+    else document.getElementById("bizBtn").classList.add("selected");
 }
 
 async function sendOTP() {
     const email = document.getElementById("email").value;
 
-    if (!role) {
-        alert("Please select Job Seeker or Business first.");
-        return;
-    }
-    if (!email) {
-        alert("Please enter your email.");
-        return;
-    }
+    if (!role) return alert("Select your role first!");
+    if (!email) return alert("Enter your email!");
 
-    const res = await fetch(`${BACKEND}/auth/send-otp`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ email, role })
-    });
+    try {
+        const res = await fetch(`${BACKEND}/auth/send-otp`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, role })
+        });
 
-    const data = await res.json();
+        const data = await res.json();
+        console.log("OTP:", data);
 
-    if (data.success) {
-        alert("OTP Sent to your email!");
-    } else {
-        alert("Failed to send OTP. Check backend.");
+        alert("OTP sent!");
+        
+    } catch (err) {
+        console.error("Send OTP Error:", err);
+        alert("Failed to send OTP");
     }
 }
 
@@ -77,29 +67,24 @@ async function verifyOTP() {
     const email = document.getElementById("email").value;
     const otp = document.getElementById("otp").value;
 
-    if (!otp) {
-        alert("Enter OTP first.");
-        return;
-    }
+    try {
+        const res = await fetch(`${BACKEND}/auth/verify-otp`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, otp })
+        });
 
-    const res = await fetch(`${BACKEND}/auth/verify-otp`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ email, otp })
-    });
+        const data = await res.json();
 
-    const data = await res.json();
-
-    if (data.token) {
-        localStorage.setItem("careerloop_token", data.token);
-
-        if (role === "jobseeker") {
-            window.location.href = "jobseeker.html";
+        if (data.token) {
+            localStorage.setItem("careerloop_token", data.token);
+            window.location.href = role === "jobseeker" ? "/jobseeker.html" : "/business.html";
         } else {
-            window.location.href = "business.html";
+            alert("Wrong OTP");
         }
-    } else {
-        alert("Wrong OTP");
+
+    } catch (err) {
+        console.error("Verify Error:", err);
     }
 }
 </script>
