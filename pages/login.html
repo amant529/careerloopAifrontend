@@ -1,64 +1,108 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Careerloop AI</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body>
+<body class="login-page">
 
-<div class="container-center">
-    <h2>Select Your Role</h2>
+    <h1 class="login-title">Select Your Role</h1>
 
-    <div class="card-role">
-        <button onclick="selectRole('jobseeker')" class="btn-large">Job Seeker</button>
-        <button onclick="selectRole('business')" class="btn-large">Business / HR</button>
+    <div class="role-box">
+        <button id="jobBtn" class="role-btn" onclick="selectRole('jobseeker')">Job Seeker</button>
+        <button id="bizBtn" class="role-btn" onclick="selectRole('business')">Business / HR</button>
     </div>
 
-    <input id="email" placeholder="Enter Email" class="input">
+    <div class="login-box">
+        <input id="email" class="input-field" placeholder="Enter email">
+        <button class="btn-primary" onclick="sendOTP()">Send OTP</button>
+    </div>
 
-    <button class="btn-primary" onclick="sendOTP()">Send OTP</button>
-
-    <input id="otp" placeholder="Enter OTP" class="input">
-    <button class="btn-primary" onclick="verifyOTP()">Verify & Login</button>
-</div>
+    <div class="otp-box">
+        <input id="otp" class="input-field" placeholder="Enter OTP">
+        <button class="btn-primary" onclick="verifyOTP()">Verify & Login</button>
+    </div>
 
 <script>
+// 🔥 YOUR LIVE BACKEND URL
+const BACKEND = "https://careerloopaibackend.onrender.com";
+
 let role = "";
 
 function selectRole(r) {
     role = r;
-    alert("Role Selected: " + r);
+
+    // highlight button
+    document.getElementById("jobBtn").classList.remove("selected");
+    document.getElementById("bizBtn").classList.remove("selected");
+
+    if (r === "jobseeker") {
+        document.getElementById("jobBtn").classList.add("selected");
+    } else {
+        document.getElementById("bizBtn").classList.add("selected");
+    }
 }
 
 async function sendOTP() {
     const email = document.getElementById("email").value;
-    await fetch("https://your-backend-url/auth/send-otp", {
+
+    if (!role) {
+        alert("Please select Job Seeker or Business first.");
+        return;
+    }
+    if (!email) {
+        alert("Please enter your email.");
+        return;
+    }
+
+    const res = await fetch(`${BACKEND}/auth/send-otp`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ email, role })
     });
 
-    alert("OTP sent!");
+    const data = await res.json();
+
+    if (data.success) {
+        alert("OTP Sent to your email!");
+    } else {
+        alert("Failed to send OTP. Check backend.");
+    }
 }
 
 async function verifyOTP() {
     const email = document.getElementById("email").value;
     const otp = document.getElementById("otp").value;
 
-    const res = await fetch("https://careerloopaibackend.onrender.com/auth/verify-otp", {
+    if (!otp) {
+        alert("Enter OTP first.");
+        return;
+    }
+
+    const res = await fetch(`${BACKEND}/auth/verify-otp`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ email, otp })
     });
 
     const data = await res.json();
-    localStorage.setItem("careerloop_token", data.token);
 
-    if (role === "jobseeker") window.location.href = "jobseeker.html";
-    else window.location.href = "business.html";
+    if (data.token) {
+        localStorage.setItem("careerloop_token", data.token);
+
+        if (role === "jobseeker") {
+            window.location.href = "jobseeker.html";
+        } else {
+            window.location.href = "business.html";
+        }
+    } else {
+        alert("Wrong OTP");
+    }
 }
 </script>
 
 </body>
 </html>
-
