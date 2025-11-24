@@ -2,44 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Careerloop AI – Bulk Screening</title>
+  <title>Careerloop AI – Bulk Screening (HR)</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body onload="requireAuth()">
   <div class="page-shell">
     <div class="topbar">
-      <div class="topbar-title">Bulk ATS Screening (HR)</div>
-      <div class="topbar-right">
-        <button class="btn-outline" onclick="window.location.href='business.html'">
-          Back to Dashboard
-        </button>
-        <button class="btn-outline" onclick="logout()">Logout</button>
+      <div class="topbar-title">Bulk ATS Screening – HR</div>
+      <div>
+        <button class="btn-secondary" onclick="logout()">Logout</button>
       </div>
     </div>
 
     <div class="card-grid">
-      <div class="card">
-        <label>Resumes (one candidate per block)</label>
+      <div class="feature-card" style="border-radius:var(--radius-xl);">
+        <label>Candidate Resumes</label>
         <textarea
           id="bulkResumes"
-          placeholder="Paste multiple resumes. Separate candidates with &#10;&#10;---&#10;&#10;"
+          placeholder="Paste multiple resumes. Separate candidates with a line like: &#10;&#10;---&#10;&#10;"
         ></textarea>
 
         <label>Job Description</label>
-        <textarea id="bulkJD" placeholder="Paste JD here"></textarea>
+        <textarea
+          id="bulkJD"
+          placeholder="Paste the JD for this role."
+        ></textarea>
 
-        <button class="btn-primary" style="margin-top:14px;" onclick="runBulk()">
+        <button
+          class="btn-primary"
+          style="margin-top:14px;"
+          onclick="runBulk()"
+        >
           Run Bulk Screening
         </button>
       </div>
 
-      <div class="card">
+      <div class="feature-card" style="border-radius:var(--radius-xl);">
         <h3>Candidates Ranked</h3>
         <pre id="bulkResult"></pre>
       </div>
     </div>
   </div>
 
-  <script src="/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
