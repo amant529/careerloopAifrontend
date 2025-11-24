@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Careerloop AI – Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-page">
+  <div class="page-shell">
+    <div class="login-card">
+      <h2>Welcome to Careerloop AI</h2>
+      <p style="color:#e5edff;font-size:0.95rem;">
+        Choose how you want to use the platform and enter your email to
+        continue. No OTP required in beta.
+      </p>
+
+      <div class="role-row">
+        <label class="role-pill">
+          <input type="radio" name="role" value="jobseeker" />
+          Job Seeker
+        </label>
+        <label class="role-pill">
+          <input type="radio" name="role" value="business" />
+          Business / HR
+        </label>
+      </div>
+
+      <label for="loginEmail">Email</label>
+      <input
+        id="loginEmail"
+        type="email"
+        class="input-field"
+        placeholder="you@example.com"
+      />
+
+      <div style="margin-top:18px;display:flex;justify-content:flex-end;">
+        <button class="btn-primary" onclick="loginUser()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
