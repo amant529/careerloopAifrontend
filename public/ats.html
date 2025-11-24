@@ -2,47 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ATS Screening – Careerloop AI</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <title>Careerloop AI – ATS Screening</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body onload="requireAuth()">
-  <div class="page-container">
-    <div class="page-header">
-      <h1 class="page-title">ATS Screening</h1>
-      <button class="btn-outline" onclick="logout()">Logout</button>
+  <div class="page-shell">
+    <div class="topbar">
+      <div class="topbar-title">ATS Screening</div>
+      <div class="topbar-right">
+        <button class="btn-outline" onclick="window.location.href='jobseeker.html'">
+          Back to Dashboard
+        </button>
+        <button class="btn-outline" onclick="logout()">Logout</button>
+      </div>
     </div>
-
-    <p style="opacity:0.9;margin-bottom:18px;">
-      Paste your resume on the left and the job description on the right.
-      Careerloop AI will show a <strong>match score, missing skills</strong> and
-      suggestions to improve your resume for that role.
-    </p>
 
     <div class="card-grid">
       <div class="card">
-        <h3>Your Resume</h3>
-        <textarea id="atsResume"
-                  placeholder="Paste your resume text here (copy from PDF/Word).."></textarea>
-      </div>
-      <div class="card">
-        <h3>Job Description</h3>
-        <textarea id="atsJD"
-                  placeholder="Paste the JD from Naukri, LinkedIn, company website, etc."></textarea>
+        <label>Your Resume (plain text)</label>
+        <textarea id="atsResume" placeholder="Paste your resume text here"></textarea>
+
+        <label>Job Description</label>
+        <textarea id="atsJD" placeholder="Paste the target job description here"></textarea>
+
         <button class="btn-primary" style="margin-top:14px;" onclick="runATS()">
-          Run ATS Match
+          Run ATS Check
         </button>
       </div>
-    </div>
 
-    <div class="card" style="margin-top:20px;">
-      <h3>AI Result</h3>
-      <p style="font-size:13px;opacity:0.9;margin-top:4px;">
-        You’ll see match %, important keywords and plain-English advice on how to tweak your resume.
-      </p>
-      <div id="atsResult" class="result-box"></div>
+      <div class="card">
+        <h3>ATS Result</h3>
+        <div id="atsResult" class="result-box">
+          The AI ATS analysis will appear here.
+        </div>
+      </div>
     </div>
   </div>
+
   <script src="/app.js"></script>
 </body>
 </html>
