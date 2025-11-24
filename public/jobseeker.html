@@ -9,9 +9,8 @@
   <div class="page-shell">
     <div class="topbar">
       <div class="topbar-title">Jobseeker Dashboard</div>
-      <div class="topbar-right">
-        <span id="userEmailDisplay"></span>
-        <button class="btn-outline" onclick="logout()">Logout</button>
+      <div>
+        <button class="btn-secondary" onclick="logout()">Logout</button>
       </div>
     </div>
 
@@ -19,10 +18,13 @@
       <div class="dashboard-card">
         <div>
           <h3>AI Resume Builder</h3>
-          <p>Create ATS-optimised resumes with our premium templates.</p>
+          <p>Create ATS-optimised resumes with our templates.</p>
           <span class="tag-pill">Free in Beta</span>
         </div>
-        <button class="btn-primary" onclick="window.location.href='resume-builder.html'">
+        <button
+          class="btn-primary"
+          onclick="window.location.href='resume-builder.html'"
+        >
           Open Resume Builder
         </button>
       </div>
@@ -30,26 +32,16 @@
       <div class="dashboard-card">
         <div>
           <h3>ATS Screening</h3>
-          <p>Check how well your resume matches a specific job description.</p>
-          <span class="tag-pill">Powered by AI scoring</span>
+          <p>Check how well your resume matches a specific JD.</p>
+          <span class="tag-pill">AI ATS scoring</span>
         </div>
-        <button class="btn-outline" onclick="window.location.href='ats.html'">
+        <button class="btn-secondary" onclick="window.location.href='ats.html'">
           Run ATS Check
         </button>
       </div>
     </div>
   </div>
 
-  <script>
-    // simple email display
-    const email = localStorage.getItem("careerloop_email") || "";
-    if (email) {
-      document.addEventListener("DOMContentLoaded", () => {
-        const el = document.getElementById("userEmailDisplay");
-        if (el) el.textContent = email;
-      });
-    }
-  </script>
-  <script src="/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
