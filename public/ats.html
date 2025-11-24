@@ -9,36 +9,49 @@
   <div class="page-shell">
     <div class="topbar">
       <div class="topbar-title">ATS Screening</div>
-      <div class="topbar-right">
-        <button class="btn-outline" onclick="window.location.href='jobseeker.html'">
-          Back to Dashboard
+      <div>
+        <button
+          class="btn-secondary"
+          onclick="window.location.href='jobseeker.html'"
+        >
+          Back
         </button>
-        <button class="btn-outline" onclick="logout()">Logout</button>
+        <button class="btn-secondary" onclick="logout()">Logout</button>
       </div>
     </div>
 
     <div class="card-grid">
-      <div class="card">
+      <div class="feature-card" style="border-radius:var(--radius-xl);">
         <label>Your Resume (plain text)</label>
-        <textarea id="atsResume" placeholder="Paste your resume text here"></textarea>
+        <textarea
+          id="atsResume"
+          placeholder="Paste your resume text here."
+        ></textarea>
 
         <label>Job Description</label>
-        <textarea id="atsJD" placeholder="Paste the target job description here"></textarea>
+        <textarea
+          id="atsJD"
+          placeholder="Paste the target job description here."
+        ></textarea>
 
-        <button class="btn-primary" style="margin-top:14px;" onclick="runATS()">
+        <button
+          class="btn-primary"
+          style="margin-top:14px;"
+          onclick="runATS()"
+        >
           Run ATS Check
         </button>
       </div>
 
-      <div class="card">
+      <div class="feature-card" style="border-radius:var(--radius-xl);">
         <h3>ATS Result</h3>
         <div id="atsResult" class="result-box">
-          The AI ATS analysis will appear here.
+          ATS match score and feedback will appear here.
         </div>
       </div>
     </div>
   </div>
 
-  <script src="/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
