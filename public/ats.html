@@ -13,14 +13,22 @@
       <button class="btn-outline" onclick="logout()">Logout</button>
     </div>
 
+    <p style="opacity:0.9;margin-bottom:18px;">
+      Paste your resume on the left and the job description on the right.
+      Careerloop AI will show a <strong>match score, missing skills</strong> and
+      suggestions to improve your resume for that role.
+    </p>
+
     <div class="card-grid">
       <div class="card">
         <h3>Your Resume</h3>
-        <textarea id="atsResume" placeholder="Paste your resume text here..."></textarea>
+        <textarea id="atsResume"
+                  placeholder="Paste your resume text here (copy from PDF/Word).."></textarea>
       </div>
       <div class="card">
         <h3>Job Description</h3>
-        <textarea id="atsJD" placeholder="Paste JD here..."></textarea>
+        <textarea id="atsJD"
+                  placeholder="Paste the JD from Naukri, LinkedIn, company website, etc."></textarea>
         <button class="btn-primary" style="margin-top:14px;" onclick="runATS()">
           Run ATS Match
         </button>
@@ -28,7 +36,10 @@
     </div>
 
     <div class="card" style="margin-top:20px;">
-      <h3>Result</h3>
+      <h3>AI Result</h3>
+      <p style="font-size:13px;opacity:0.9;margin-top:4px;">
+        You’ll see match %, important keywords and plain-English advice on how to tweak your resume.
+      </p>
       <div id="atsResult" class="result-box"></div>
     </div>
   </div>
