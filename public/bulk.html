@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bulk Screening – Careerloop AI</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body onload="requireAuth()">
+  <div class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">Bulk Screening (Business)</h1>
+      <button class="btn-outline" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Resumes (paste)</h3>
+        <p style="font-size:13px;opacity:0.9;">
+          Paste multiple resumes. Separate each candidate with a line containing <code>---</code>.
+        </p>
+        <textarea id="bulkResumes" placeholder="Resume 1 ... --- Resume 2 ..."></textarea>
+      </div>
+
+      <div class="card">
+        <h3>Job Description</h3>
+        <textarea id="bulkJD"></textarea>
+        <button class="btn-primary" style="margin-top:14px;" onclick="runBulk()">
+          Run Bulk Screening
+        </button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h3>Ranked Candidates</h3>
+      <div id="bulkResult" class="result-box"></div>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
+
