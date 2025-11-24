@@ -2,57 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jobseeker Dashboard – Careerloop AI</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <title>Careerloop AI – Jobseeker Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body onload="requireAuth()">
-  <div class="page-container">
-    <div class="page-header">
-      <h1 class="page-title">Jobseeker Dashboard</h1>
-      <button class="btn-outline" onclick="logout()">Logout</button>
+  <div class="page-shell">
+    <div class="topbar">
+      <div class="topbar-title">Jobseeker Dashboard</div>
+      <div class="topbar-right">
+        <span id="userEmailDisplay"></span>
+        <button class="btn-outline" onclick="logout()">Logout</button>
+      </div>
     </div>
 
-    <p style="opacity:0.9;margin-bottom:18px;">
-      Welcome to the <strong>Careerloop AI beta</strong>. Start by creating an AI-optimised resume,
-      then test it against real job descriptions using ATS Screening.
-    </p>
-
-    <div class="card-grid">
-      <div class="card">
-        <h3>AI Resume Builder</h3>
-        <p style="margin-top:6px;">
-          Share just your <strong>basic details</strong> – Careerloop AI will write a full,
-          professional resume for you using our 5 premium templates.
-        </p>
-        <ul style="margin-top:10px;font-size:14px;opacity:0.9;">
-          <li>✅ Designed for Indian job portals & ATS</li>
-          <li>✅ Highlights your strengths automatically</li>
-          <li>✅ Freshers & experienced – both supported</li>
-        </ul>
-        <button class="btn-primary" style="margin-top:12px;"
-                onclick="window.location.href='/resume-builder.html'">
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <div>
+          <h3>AI Resume Builder</h3>
+          <p>Create ATS-optimised resumes with our premium templates.</p>
+          <span class="tag-pill">Free in Beta</span>
+        </div>
+        <button class="btn-primary" onclick="window.location.href='resume-builder.html'">
           Open Resume Builder
         </button>
       </div>
 
-      <div class="card">
-        <h3>ATS Screening</h3>
-        <p style="margin-top:6px;">
-          Paste your resume and a JD – see <strong>match score, missing keywords</strong> and
-          AI suggestions to improve.
-        </p>
-        <ul style="margin-top:10px;font-size:14px;opacity:0.9;">
-          <li>🎯 Ideal for resume + JD alignment</li>
-          <li>🔍 Shows skill gaps & role fit</li>
-        </ul>
-        <button class="btn-primary" style="margin-top:12px;"
-                onclick="window.location.href='/ats.html'">
+      <div class="dashboard-card">
+        <div>
+          <h3>ATS Screening</h3>
+          <p>Check how well your resume matches a specific job description.</p>
+          <span class="tag-pill">Powered by AI scoring</span>
+        </div>
+        <button class="btn-outline" onclick="window.location.href='ats.html'">
           Run ATS Check
         </button>
       </div>
     </div>
   </div>
+
+  <script>
+    // simple email display
+    const email = localStorage.getItem("careerloop_email") || "";
+    if (email) {
+      document.addEventListener("DOMContentLoaded", () => {
+        const el = document.getElementById("userEmailDisplay");
+        if (el) el.textContent = email;
+      });
+    }
+  </script>
   <script src="/app.js"></script>
 </body>
 </html>
